@@ -20,7 +20,7 @@
 */
 
 const onWikiLoaded = new Event("wikiLoaded");
-const WikiName = "EldurWiki";
+const WikiName = "MyWiki";
 const WikiPath = "/" + WikiName;
 
 function Splice(str, index, count, add)

@@ -1,8 +1,12 @@
 import os, re
 
-ImageHost = "https://lucidadragon.github.io/EldurWiki/images/"
+SiteName = "MyWiki"
+SiteDisplayName = "My Wiki"
+Author = "Anonymous"
+GitHub = "anonymous"
+ImageHost = f"https://{GitHub}.github.io/{SiteName}/images/"
 CharSet = "<meta charset=\"UTF-8\">"
-ScriptTag = "<script src=\"/EldurWiki/loader.js\"></script>"
+ScriptTag = f"<script src=\"/{SiteName}/loader.js\"></script>"
 NoScript = "<noscript>JavaScript is required to load this page.</noscript>"
 
 def AddCamelSpaces(s):
@@ -35,14 +39,18 @@ def FindImageURI(lines):
 
 def GetHTML(title, description, imageURI):
 	titleMeta = "<meta name=\"og:title\" content=\"" + title + "\">"
-	authorMeta = "<meta name=\"author\" content=\"Lucida Dragon\"><meta name=\"article:author\" content=\"Lucida Dragon\">"
-	siteNameMeta = "<meta name=\"og:site_name\" content=\"Eldur Wiki\">"
+	authorMeta = f"<meta name=\"author\" content=\"{Author}\"><meta name=\"article:author\" content=\"{Author}\">"
+	siteNameMeta = f"<meta name=\"og:site_name\" content=\"{SiteDisplayName}\">"
 	typeMeta = "<meta name=\"og:type\" content=\"article\">"
 	descriptionMeta = ""
-	if description != None: descriptionMeta = "<meta name=\"description\" content=\"" + description + "\"><meta name=\"og:description\" content=\"" + description + "\">"
+	if description != None: descriptionMeta = f"<meta name=\"description\" content=\"{description}\"><meta name=\"og:description\" content=\"{description}\">"
 	imageMeta = ""
 	if imageURI != None: imageMeta = "<meta name=\"og:image\" content=\"" + imageURI + "\">"
 	return "<!DOCTYPE html><html><head>" + CharSet + siteNameMeta + titleMeta + typeMeta + authorMeta + descriptionMeta + imageMeta + ScriptTag + "</head><body>" + NoScript + "</body></html>"
+
+if not os.path.exists("./wiki"):
+	print(f"Script must be run from the root {SiteName} directory.")
+	exit(1)
 
 for subdir, dirs, files in os.walk("./wiki"):
 	for file in files:

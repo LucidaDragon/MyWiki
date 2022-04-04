@@ -7,7 +7,7 @@
 			"request": "launch",
 			"reAttach": true,
 			"name": "Launch Firefox",
-			"url": "http://localhost:5902/EldurWiki/index.html",
+			"url": "http://localhost:5902/MyWiki/index.html",
 			"webRoot": "${workspaceFolder}"
 		}
 	]

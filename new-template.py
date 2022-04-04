@@ -1,11 +1,13 @@
 import importlib, os, shutil
 
+SiteName = "MyWiki"
+
 def main():
 	root = os.getcwd().replace("\\", "/")
 	if root.endswith("/"): root = root[0:len(root) - 1]
 
-	if not root.endswith("EldurWiki"):
-		print(f"Script must be run from the root EldurWiki directory. Current directory is: {root}")
+	if not root.endswith(SiteWiki):
+		print(f"Script must be run from the root {SiteWiki} directory. Current directory is: {root}")
 		return
 
 	article = input("Enter Article Name: ").strip()
@@ -34,7 +36,7 @@ def main():
 	
 	try:
 		index = open(f"{articlePath}/index.html", "w")
-		index.write("<script src=\"/EldurWiki/loader.js\"></script>")
+		index.write(f"<script src=\"/{SiteWiki}/loader.js\"></script>")
 		index.close()
 	except:
 		print(f"Failed to create index.html in \"{articlePath}\". Check path and permissions.")
